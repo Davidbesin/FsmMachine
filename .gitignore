@@ -1,0 +1,26 @@
+# Unity-generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Memory captures and recordings (can get huge)
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Ignore system/IDE files
+.vs/
+.gradle/
+*.log
+*.pidb
+*.user
+*.DotSettings.user
+
+# Asset store tools (optional)
+[Aa]ssets/AssetStoreTools*
+
+# JetBrains Rider plugin (auto-generated)
+[Aa]ssets/Plugins/Editor/JetBrains*
