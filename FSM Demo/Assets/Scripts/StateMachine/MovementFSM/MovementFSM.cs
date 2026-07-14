@@ -10,6 +10,8 @@ public class MovementFSM : MonoBehaviour
     [Header("Debug")]
     public MovementStateType CurrentStateType;
 
+    // Cached state instances - created once, reused for every transition
+    // instead of "new"-ing a fresh object each time we swap states.
     public IdleState Idle { get; private set; }
     public MoveState Move { get; private set; }
     public JumpState Jump { get; private set; }

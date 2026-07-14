@@ -1,36 +1,51 @@
+using UnityEngine;
+
 public class DashState : IMovementState
 {
-    public MovementStateType Type => MovementStateType.Dash;
+    [SerializeField] private float dashSpeed = 12f;
 
-    // TODO: PlayerController has no dash mechanic yet - no input action
+    public MovementStateType Type => MovementStateType.Dash;
 
     public void Enter()
     {
+        AnimationController.Instance.Slide();
     }
 
     public void Tick()
     {
+        PlayerController.Instance.Dash(dashSpeed);
+        
+        PlayerController.Instance.HandleJumpAndGravity();
+
+        var animator = AnimationController.Instance.Animator;
+        var state = AnimationController.Instance.CurrentStateInfo;
+
+        bool inDash = state.IsName("Dash");
+        bool exitingIntoDash = animator.IsInTransition(0) &&
+                                animator.GetNextAnimatorStateInfo(0).IsName("Dash");
+
+        if (inDash && state.normalizedTime >= 1f && !animator.IsInTransition(0))
+        {
+            MovementFSM.Instance.ChangeState(
+                PlayerController.Instance.IsMoving ? MovementFSM.Instance.Move : MovementFSM.Instance.Idle);
+        }
     }
 
     public void Exit()
     {
+        
     }
 
     public bool CanTransition(IState nextState)
     {
-        // No re-dashing straight out of a dash.
         if (nextState is DashState)
             return false;
 
         var pc = PlayerController.Instance;
 
-        // Airborne when the dash ends - only Fall makes sense.
         if (nextState is FallState)
             return !pc.IsGrounded;
 
-        // Idle / Move / Jump all require having landed.
-        // (Idle = no input, Move = input held, Jump = grounded + jump input,
-        // all handled the same way the other states already decide it.)
         return pc.IsGrounded;
     }
 }

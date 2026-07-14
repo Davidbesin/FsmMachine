@@ -25,6 +25,7 @@ public class FallState : IMovementState
     public void Exit()
     {
         PlayerController.Instance.MultiplySpeed(0.5f);
+        AnimationController.Instance.Land();
     }
 
     public bool CanTransition(IState nextState)

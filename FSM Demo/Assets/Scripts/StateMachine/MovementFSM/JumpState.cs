@@ -4,6 +4,7 @@ public class JumpState : IMovementState
 
     public void Enter()
     {
+        AnimationController.Instance.Jump();
     }
 
     public void Tick()

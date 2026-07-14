@@ -31,6 +31,9 @@ public class PlayerRotation : MonoBehaviour
 
     private void OnLook(InputAction.CallbackContext context)
     {
+        if (MovementFSM.Instance.CurrentStateType == MovementStateType.Dash)
+        return;
+
         Vector2 look = context.ReadValue<Vector2>();
 
         transform.Rotate(Vector3.up, look.x * sensitivity, Space.World);

@@ -4,6 +4,7 @@ public class MoveState : IMovementState
 
     public void Enter()
     {
+        AnimationController.Instance.IdleAndWhatNot();
     }
 
     public void Tick()
