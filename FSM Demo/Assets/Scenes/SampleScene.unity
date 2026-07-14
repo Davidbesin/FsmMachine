@@ -510,10 +510,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   walkSpeed: 4
   runSpeed: 8
-  acceleration: 10
+  acceleration: 4
   deceleration: 16
   jumpHeight: 2
   gravity: -20
+  rampDuration: 0.1
+  minDashMultiplier: 0.03
   cameraTransform: {fileID: 330585546}
 --- !u!114 &465033186
 MonoBehaviour:
