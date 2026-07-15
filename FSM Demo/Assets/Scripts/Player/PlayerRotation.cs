@@ -10,6 +10,8 @@ public class PlayerRotation : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputSystem_Actions();
+         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnEnable()
