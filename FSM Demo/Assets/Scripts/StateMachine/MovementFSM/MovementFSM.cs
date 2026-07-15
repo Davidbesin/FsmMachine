@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 public class MovementFSM : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MovementFSM : MonoBehaviour
 
     [Header("Debug")]
     public MovementStateType CurrentStateType;
+    public TextMeshProUGUI stateText;
 
     // Cached state instances - created once, reused for every transition
     // instead of "new"-ing a fresh object each time we swap states.
@@ -58,8 +60,9 @@ public class MovementFSM : MonoBehaviour
 
         OnStateChanged?.Invoke(CurrentStateType);
 
+        if (stateText != null)
+            stateText.text = CurrentStateType.ToString();
+
         return true;
-
-
     }
 }
